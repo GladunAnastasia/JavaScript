@@ -10,23 +10,36 @@ http.createServer(function (req, res) {
 }).listen(port);
 
 let array = ['A', 'B', 'C', 'D', 'E', 'F'];
-BinToHex("101010111101000010101011111");
 function BinToDec(number) {
+    if(!rightNumber(number)) {
+        return;
+    }
     let digit = 0;
-    for (let i = number.length - 1; i >= 0; i--) {
-        digit += number.charAt(i) * Math.pow(2, Math.abs(i - (number.length - 1)));
+    for(let i = number.length-1; i >= 0; i--) {
+        digit += number.charAt(i) * Math.pow(2,Math.abs(i - (number.length - 1)));
     }
     return digit;
-}
+} 
 function BinToHex(number) {
+    if(!rightNumber(number)) {
+        return;
+    }
     let digit = BinToDec(number);
     let result = "";
-
-    do {
+    do{
         let temp = Math.floor(digit % 16);
         digit = Math.floor(digit / 16);
         result = (temp >= 10 ? array[temp - 10] : temp) + result;
-    } while (digit >= 16);
-    result = digit + result;
+    } while(digit >= 16);
+    result = (digit >= 10 ? array[digit - 10] : digit) + result;
     return result;
-}  
+} 
+function rightNumber(number) {
+    number = String(number);
+    for(let i = 0; i < number.length; i++) {
+        if(number.charAt(i) != '0' && number.charAt(i) != '1') {
+            return false;
+        }
+    }
+    return true;
+}
