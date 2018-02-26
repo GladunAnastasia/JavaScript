@@ -17,6 +17,7 @@
 				p2.innerHTML = binToHex == undefined ? "Enter valid data for Bin to Hex" :('Hexadecimal number system: ' + binToHex);
 			}
 			function BinToDec(number) {
+				number = String(number);
 				if(!rightNumber(number)) {
 					return;
 				}
@@ -27,6 +28,7 @@
 				return digit;
 			} 
 			function BinToHex(number) {
+				number = String(number);
 				if(!rightNumber(number)) {
 					return;
 				}
