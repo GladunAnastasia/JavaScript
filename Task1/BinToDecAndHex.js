@@ -22,7 +22,6 @@ function BinToDec(number) {
     return digit;
 } 
 function BinToHex(number) {
-    number = String(number);
     if(!rightNumber(number)) {
         return;
     }
