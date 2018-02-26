@@ -11,6 +11,7 @@ http.createServer(function (req, res) {
 
 let array = ['A', 'B', 'C', 'D', 'E', 'F'];
 function BinToDec(number) {
+    number = String(number);
     if(!rightNumber(number)) {
         return;
     }
@@ -21,6 +22,7 @@ function BinToDec(number) {
     return digit;
 } 
 function BinToHex(number) {
+    number = String(number);
     if(!rightNumber(number)) {
         return;
     }
