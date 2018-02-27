@@ -4,8 +4,7 @@ function BinToDec(number) {
 		return;
 	}
 	let result = 0;
-	numberArray = number.split('');
-	numberArray.forEach(function(value, index) {result += value * Math.pow(2,Math.abs(index-(number.length-1)))});
+	number.split('').forEach(function(value, index) {result += value * Math.pow(2,Math.abs(index-(number.length-1)))});
 	return result;
 }
 function rightNumber(number) {
