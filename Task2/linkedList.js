@@ -2,6 +2,7 @@ function Item(value) {
 	this.value = value;
 }
 function LinkedList(number) {
+	//Добавление элемента в список
 	this.add = function(element) {
 		let it = new Item(element);
 		if(this.last === undefined) {
@@ -13,6 +14,7 @@ function LinkedList(number) {
 			this.last = this.last.next;
 		}
 	}
+	//Получение элемента по значению
 	this.get = function(element) {
 		let tempItem = this.first;
 		while(tempItem !== undefined) {
@@ -22,6 +24,7 @@ function LinkedList(number) {
 			tempItem = tempItem.next;
 		}
 	}
+	//Удаление первого вхождения элемента
 	this.removeFirst = function(element) {
 		let tempItem = this.get(element);
 		if (tempItem !== undefined){
@@ -40,6 +43,7 @@ function LinkedList(number) {
 			}
 		}
 	}
+	//Удаление всех вхождений элемента
 	this.removeAll = function(element) {
 		let tempItem;
 		while((tempItem = this.get(element))){
@@ -58,10 +62,12 @@ function LinkedList(number) {
 			}
 		}
 	}
+	//Очищение списка
 	this.clear = function() {
 		this.first = undefined;
 		this.last = undefined;
 	}
+	//Печать списка
 	this.printList = function() {
 		let tempItem = this.first;
 		console.log(tempItem ? "Список: " : "Список пуст");
@@ -70,6 +76,7 @@ function LinkedList(number) {
 			tempItem = tempItem.next;
 		}
 	}
+	//Сложение двух списков
 	this.plus = function(list) {
 		let tempItem = this.first;
 		let thisSum = getSum(tempItem);
@@ -91,6 +98,7 @@ function LinkedList(number) {
 		String(number).split('').forEach(function(value) {if(value === 'e') {flag = false}});
 		return flag;
 	}
+	//Преобразование числа в список
 	this.numberToList = function(number) {
 		console.log("HERE!");
 		if(isNaN(number)) {
