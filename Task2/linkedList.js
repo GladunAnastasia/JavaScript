@@ -108,7 +108,7 @@ function LinkedList(number) {
 			String(number).split('').forEach(function(value, index) {list.add(value)});
 			return list;
 		}
-		rightNumber = function(number) {
+		function rightNumber(number) {
 			let flag = true;
 			String(number).split('').forEach(function(value) {if(value === 'e') {flag = false}});
 			return flag;
