@@ -93,35 +93,37 @@ function LinkedList(number) {
 		}
 		return new LinkedList(String(result).split('').reverse().join(''));
 	}
-	this.rightNumber = function(number) {
-		let flag = true;
-		String(number).split('').forEach(function(value) {if(value === 'e') {flag = false}});
-		return flag;
-	}
-	//Преобразование числа в список
-	this.numberToList = function(number) {
-		console.log("HERE!");
-		if(isNaN(number)) {
-			console.log("В JavaScript нет представления для введенного числа. Создан пустой список.");
-			return new LinkedList();
-		}
-		if(typeof number === 'number' && number > Number.MAX_SAFE_INTEGER || !this.rightNumber(number)) {
-			console.log("Слишком длинное число или число с экспонентой. Передайте число в формате строки. Создан пустой список.");
-			return new LinkedList();
-		}
-		let list = new LinkedList();
-		String(number).split('').forEach(function(value, index) {list.add(value)});
-		console.log(list);
-		return list;
-	}
 	if(number !== undefined) {
-		return this.numberToList(number);
+		//Преобразование числа в список. Вызывается при создании объекта с параметром number.
+		function numberToList(number) {
+			if(isNaN(number)) {
+				console.log("В JavaScript нет представления для введенного числа. Создан пустой список.");
+				return new LinkedList();
+			}
+			if(typeof number === 'number' && number > Number.MAX_SAFE_INTEGER || !rightNumber(number)) {
+				console.log("Слишком длинное число или число с экспонентой. Передайте число в формате строки. Создан пустой список.");
+				return new LinkedList();
+			}
+			let list = new LinkedList();
+			String(number).split('').forEach(function(value, index) {list.add(value)});
+			return list;
+		}
+		rightNumber = function(number) {
+			let flag = true;
+			String(number).split('').forEach(function(value) {if(value === 'e') {flag = false}});
+			return flag;
+		}
+		return numberToList(number);
 	}
 }
 let listFirst = new LinkedList('243');
 let listSecond = new LinkedList('564');
 listFirst.plus(listSecond).printList();//--->  '708'
-let list = (new LinkedList('12345678946573645762398489899'));
+listFirst = new LinkedList('183');
+listSecond = new LinkedList('82543');
+listFirst.plus(listSecond).printList();//--->  '62728'
+let list = (new LinkedList(123456789));
+list.add(0);
 list.removeAll(1);
 list.removeAll(9);
 list.removeAll(8);
