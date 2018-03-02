@@ -109,7 +109,7 @@ function LinkedList(number) {
 			return list;
 		}
 		function rightNumber(number) {
-			return String(number).split('').every(function(x){return x!=='e' && !isNaN(number)});
+			return String(number).split('').every(function(x){return x!=='e'}) && !isNaN(number);
 		}
 		return numberToList(number);
 	}
