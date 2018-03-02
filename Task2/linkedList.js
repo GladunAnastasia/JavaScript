@@ -99,11 +99,6 @@ LinkedList.prototype.printList = function() {
 	};
 //Сложение двух списков
 LinkedList.prototype.plus = function(list) {
-		let tempItem = this.first;
-		let thisSum = getSum(tempItem);
-		tempItem = list.first;
-		let listSum = getSum(tempItem);
-		let result = Number(thisSum) + Number(listSum);
 		function getSum(item) {
 			let sum = 0;
 			while(item !== undefined) {
@@ -112,7 +107,7 @@ LinkedList.prototype.plus = function(list) {
 			}
 			return sum;
 		}
-		return new LinkedList(String(result).split('').reverse().join(''));
+		return new LinkedList(String(Number(getSum(this.first)) + Number(getSum(list.first))).split('').reverse().join(''));
 	};
 
 let listFirst = new LinkedList('243');
