@@ -8,10 +8,5 @@ function BinToDec(number) {
 	return result;
 }
 function rightNumber(number) {
-	for(let i = 0; i < number.length; i++) {
-		if(number[i] != '0' && number[i] != '1') {
-			return false;
-		}
-	}
-	return true;
+	return number.split('').every(function(x){return x == '0' || x == '1'});
 }
