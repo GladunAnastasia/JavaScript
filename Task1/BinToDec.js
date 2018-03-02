@@ -1,4 +1,4 @@
-function BinToDec(number) {
+function binToDec(number) {
 	number = String(number);
 	if(!rightNumber(number)) {
 		return;
