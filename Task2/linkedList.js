@@ -109,9 +109,7 @@ function LinkedList(number) {
 			return list;
 		}
 		function rightNumber(number) {
-			let flag = true;
-			String(number).split('').forEach(function(value) {if(value === 'e') {flag = false}});
-			return flag;
+			return String(number).split('').every(function(x){return x!=='e'});
 		}
 		return numberToList(number);
 	}
@@ -124,6 +122,7 @@ listSecond = new LinkedList('82543');
 listFirst.plus(listSecond).printList();//--->  '62728'
 let list = (new LinkedList(123456789));
 list.add(0);
+list.add(11);
 list.removeAll(1);
 list.removeAll(9);
 list.removeAll(8);
