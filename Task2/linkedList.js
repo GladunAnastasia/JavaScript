@@ -96,12 +96,12 @@ function LinkedList(number) {
 	if(number !== undefined) {
 		//Преобразование числа в список. Вызывается при создании объекта с параметром number.
 		function numberToList(number) {
-			if(isNaN(number)) {
-				console.log("В JavaScript нет представления для введенного числа. Создан пустой список.");
+			if(typeof number === 'number' && number > Number.MAX_SAFE_INTEGER) {
+				console.log("Слишком длинное число. Передайте число в формате строки. Создан пустой список.");
 				return new LinkedList();
 			}
-			if(typeof number === 'number' && number > Number.MAX_SAFE_INTEGER || !rightNumber(number)) {
-				console.log("Слишком длинное число или число с экспонентой. Передайте число в формате строки. Создан пустой список.");
+			if(!rightNumber(number)) {
+				console.log("В JavaScript нет представления для введенного числа, либо число с экспонентой. Создан пустой список.");
 				return new LinkedList();
 			}
 			let list = new LinkedList();
@@ -109,7 +109,7 @@ function LinkedList(number) {
 			return list;
 		}
 		function rightNumber(number) {
-			return String(number).split('').every(function(x){return x!=='e'});
+			return String(number).split('').every(function(x){return x!=='e' && !isNaN(number)});
 		}
 		return numberToList(number);
 	}
