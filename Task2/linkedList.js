@@ -24,9 +24,9 @@ function LinkedList(number) {
         return numberToList(number);
     }
 }
-//Размер списка
+//Размер списка.
 LinkedList.prototype.size = 0;
-//Добавление элемента в список
+//Добавление элемента в список.
 LinkedList.prototype.add = function(element) {
         let it = new Item(element);
         if(this.last === undefined) {
@@ -39,7 +39,7 @@ LinkedList.prototype.add = function(element) {
         }
         this.size++;
     };
-//Получение элемента по значению
+//Получение элемента по значению.
 LinkedList.prototype.get = function(element) {
         let tempItem = this.first;
         while(tempItem !== undefined) {
@@ -83,13 +83,13 @@ LinkedList.prototype.removeByElement = function(tempItem){
         }
         this.size--;
     };
-//Очищение списка
+//Очищение списка.
 LinkedList.prototype.clear = function() {
         this.first = undefined;
         this.last = undefined;
         this.size = 0;
     };
-//Печать списка
+//Печать списка.
 LinkedList.prototype.printList = function() {
         let tempItem = this.first;
         console.log(tempItem ? "Список: " : "Список пуст");
@@ -98,7 +98,7 @@ LinkedList.prototype.printList = function() {
             tempItem = tempItem.next;
         }
     };
-//Сложение двух списков
+//Сложение двух списков.
 LinkedList.prototype.plus = function(list) {
         function getSum(item) {
             let sum = 0;
