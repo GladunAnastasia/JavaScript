@@ -2,7 +2,7 @@ function Item(value) {
     this.value = value;
 }
 function LinkedList(number) {
-    if(number !== undefined) {
+    if(number) {
         //Преобразование числа в список. Вызывается при создании объекта с параметром number.
         function numberToList(number) {
             if(typeof number === 'number' && number > Number.MAX_SAFE_INTEGER) {
@@ -29,7 +29,7 @@ LinkedList.prototype.size = 0;
 //Добавление элемента в список.
 LinkedList.prototype.add = function(element) {
         let it = new Item(element);
-        if(this.last === undefined) {
+        if(!this.last) {
             this.first = it;
             this.last = it;
         } else {
@@ -42,7 +42,7 @@ LinkedList.prototype.add = function(element) {
 //Получение элемента по значению.
 LinkedList.prototype.get = function(element) {
         let tempItem = this.first;
-        while(tempItem !== undefined) {
+        while(tempItem) {
             if(tempItem.value == element) {
                 return tempItem;
             }
@@ -93,7 +93,7 @@ LinkedList.prototype.clear = function() {
 LinkedList.prototype.printList = function() {
         let tempItem = this.first;
         console.log(tempItem ? "Список: " : "Список пуст");
-        while(tempItem !== undefined) {
+        while(tempItem) {
             console.log(tempItem);
             tempItem = tempItem.next;
         }
@@ -102,7 +102,7 @@ LinkedList.prototype.printList = function() {
 LinkedList.prototype.plus = function(list) {
         function getSum(item) {
             let sum = 0;
-            while(item !== undefined) {
+            while(item) {
                 sum += item.value;
                 item = item.next;
             }
