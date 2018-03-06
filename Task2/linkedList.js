@@ -15,7 +15,7 @@ function LinkedList(number) {
             }
             let list = new LinkedList();
             this.size = String(number).length;
-            String(number).split('').forEach(function(value, index) {list.add(value)});
+            String(number).split('').forEach(function(value) {list.add(value)});
             return list;
         }
         function rightNumber(number) {
