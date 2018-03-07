@@ -62,18 +62,16 @@ function rightSequence(str) {
     let backInput = ['}',']',')'];
     let array = str.split('');
     for(let i = 0; i < array.length; i++) {
-        for(let j = 0; j < backInput.length; j++) {
-            if(array[i] == input[j] && array[i + 1] == backInput[j]){
-                array[i] = undefined;
-                array[i + 1] = undefined;
-            }
+        if(input.indexOf(array[i]) >= 0 && input.indexOf(array[i]) == backInput.indexOf(array[i + 1])){
+            array[i] = undefined;
+            array[i + 1] = undefined;
         }
     }
     let newStr = array.join('');
     if(str == newStr){
         return false;
     }
-    return array.join('') == '' ? true : rightSequence(array.join(''));
+    return newStr == '' ? true : rightSequence(newStr);
 }
 console.log(rightSequence('[{[({})]({})}()[{{}}([{}])]]'));//--->true
 console.log(rightSequence('[{[({})]]}({})}]'));//--->false
