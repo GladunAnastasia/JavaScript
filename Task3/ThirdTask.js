@@ -62,7 +62,8 @@ function rightSequence(str) {
     let backInput = ['}',']',')'];
     let array = str.split('');
     for(let i = 0; i < array.length; i++) {
-        if(input.indexOf(array[i]) >= 0 && input.indexOf(array[i]) == backInput.indexOf(array[i + 1])){
+    	let temp = input.indexOf(array[i]);
+        if(temp >= 0 && temp == backInput.indexOf(array[i + 1])){
             array[i] = undefined;
             array[i + 1] = undefined;
         }
