@@ -32,7 +32,7 @@ function getTheMostPopularWord(str) {
     return resultArray;
 }
 console.log(getTheMostPopularWord('Sed tempus ipsum quis eros tempus lacinia Cras finibus lorem ut lacinia egestas nunc nibh iaculis est convallis tincidunt mi mi sed \nnisl Sed porttitor aliquam elit ullamcorper tincidunt arcu euismod quis Mauris congue elit suscipit leo varius facilisis Cras et arcu sodales laoreet \nest vitae pharetra orci Integer eget nulla dictum aliquet justo semper molestie neque Maecenas bibendum lacus tincidunt auctor varius purus felis \nullamcorper dui et laoreet ligula ex et risus Donec eget fringilla nibh Cras congue tincidunt accumsan Maecenas euismod eleifend elit ut rhoncus tortor \nsodales a Cras egestas finibus lorem non tempor tincidunt aera\n                                                              '));//---> ["tincidunt"]
-console.log(getTheMostPopularWord('000 123 234 345 000 234 000 234 000 234 123 123 123 098 987 876                                  \n                             '));//---> ["000", "123", "234"]
+console.log(getTheMostPopularWord('000 123 234 345 000 234 000 234 000 234 123 123 123 098 987 876               \n                             '));//---> ["000", "123", "234"]
 
 //Строка — повторение подстроки
 function getCountRepeatSubstring(str) {
@@ -54,6 +54,7 @@ console.log(getCountRepeatSubstring("abcabcdabcgabb"));//---> 1
 console.log(getCountRepeatSubstring("           "));//---> undefined
 
 //Правильная скобочная последовательность
+//Рекурсия
 function rightSequence(str) {
     let input = ['{','[','('];
     let backInput = ['}',']',')'];
