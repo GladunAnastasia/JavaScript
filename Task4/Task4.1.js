@@ -1,0 +1,108 @@
+console.log(depthFirstSearch([[1,0],[0,5],[0,4],[1,2],[1,3],[3,2],[2,4],[4,5],[5,6],[2,6],[6,9],[2,9],[5,7],[5,8],[8,11],[7,11],[7,10],[10,11]]));
+console.log(depthFirstSearch([[0,6],[2,4],[7,1],[2,1],[5,3],[1,3],[0,3]]));
+console.log(depthFirstSearch([[0,3],[1,3],[2,3],[4,3],[5,4]]));
+console.log(breadthFirstSearch([[1,0],[0,5],[0,4],[1,2],[1,3],[3,2],[2,4],[4,5],[5,6],[2,6],[6,9],[2,9],[5,7],[5,8],[8,11],[7,11],[7,10],[10,11]]));
+console.log(breadthFirstSearch([[0,6],[2,4],[7,1],[2,1],[5,3],[1,3],[0,3]]));
+console.log(breadthFirstSearch([[0,3],[1,3],[2,3],[4,3],[5,4]]));
+function Node(name) {
+    this.name = name;
+    this.children = [];
+    this.addChildren = function(children) {
+        if (children instanceof Array) {
+            for(let i = 0; i < children.length; i++) {
+                if (this.name != children[i]) {
+                    this.children.push(children[i]);
+                }
+            }
+        } else {
+            this.children.push(children);
+        }
+        this.children.sort(function(a, b){
+            if(a.name == b.name)
+                return 0;
+            if(a.name < b.name)
+                return -1;
+            return 1;
+        });
+    }
+    this.mark = false;
+}
+function Graph(array) {
+    this.nodes = [];
+    this.getNode = function(value) {
+        for(let i = 0; i < this.nodes.length; i++) {
+            if (this.nodes[i].name == value) {
+                return this.nodes[i];
+            }
+        }
+    }
+    for(let i = 0; i < array.length; i++) {
+        let firstNode = this.getNode(array[i][0]);
+        if(!firstNode) {
+            firstNode = new Node(array[i][0]);
+            this.nodes.push(firstNode);
+        }
+        let secondNode = this.getNode(array[i][1]);
+        if(!secondNode) {
+            secondNode = new Node(array[i][1]);
+            this.nodes.push(secondNode);
+        }
+        firstNode.addChildren(secondNode);
+        secondNode.addChildren(firstNode);
+    }
+    this.nodes.sort(function(a, b){
+        if(a.name == b.name)
+            return 0;
+        if(a.name < b.name)
+            return -1;
+        return 1;
+    });
+}
+function depthFirstSearch(graph) {
+    graph = new Graph(graph);
+    let result = graph.nodes[0].name;
+    depth(graph.nodes[0]);
+    function depth(node) {
+        node.mark = true;
+        let tempNode = node;
+        for(let i = 0; i < node.children.length; i++) {
+            if(!node.children[i].mark) {
+                node = node.children[i]; 
+                node.parent = tempNode;
+                node.mark = true;
+                result += ' -> ' + node.name;
+                depth(node);
+                return;
+            }
+        }
+        if(!node.parent) {
+            return;
+        }
+        depth(node.parent);
+    }
+    return result;
+}
+
+function breadthFirstSearch(graph) {
+    graph = new Graph(graph);
+    let result = graph.nodes[0].name;
+    breadth(new Array(graph.nodes[0]));
+    function breadth(array) {
+        let arrayTemp = [];
+        for(let i = 0; i < array.length; i++) {
+            array[i].mark = true;
+            for(let j = 0; j < array[i].children.length; j++) {
+                if(!array[i].children[j].mark) {
+                    arrayTemp.push(array[i].children[j]);
+                    array[i].children[j].mark = true;
+                    result += ' -> ' + array[i].children[j].name;
+                }
+            }
+        }
+        if(arrayTemp.length == 0) {
+            return;
+        }
+        breadth(arrayTemp)
+    }
+    return result;
+}
