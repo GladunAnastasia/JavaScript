@@ -57,8 +57,9 @@ class Graph{
     }
 
     depthFirstSearch() {
-        let result = this.nodes[0].name;
-        depth(this.nodes[0]);
+        let instance = Math.floor(Math.random() * this.nodes.length);
+        let result = this.getNode(instance).name;
+        depth(this.getNode(instance));
         function depth(node) {
             node.mark = true;
             let tempNode = node;
@@ -81,8 +82,9 @@ class Graph{
     }
 
     breadthFirstSearch() {
-        let result = this.nodes[0].name;
-        breadth(new Array(this.nodes[0]));
+        let instance = Math.floor(Math.random() * this.nodes.length);
+        let result = this.getNode(instance).name;
+        breadth(new Array(this.getNode(instance)));
         function breadth(array) {
             let arrayTemp = [];
             for(let i = 0; i < array.length; i++) {
@@ -114,4 +116,4 @@ console.log(graph2.depthFirstSearch());
 console.log(graph3.depthFirstSearch());
 console.log(graph4.breadthFirstSearch());
 console.log(graph5.breadthFirstSearch());
-console.log(graph6.breadthFirstSearch()); 
+console.log(graph6.breadthFirstSearch());
