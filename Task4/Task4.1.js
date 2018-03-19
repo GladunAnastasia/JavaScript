@@ -12,13 +12,6 @@ class Node{
             } else {
                 this.children.push(children);
             }
-            this.children.sort(function(a, b){
-                if(a.name == b.name)
-                    return 0;
-                if(a.name < b.name)
-                    return -1;
-                return 1;
-            });
         }
         this.mark = false;
     }
@@ -47,13 +40,6 @@ class Graph{
             firstNode.addChildren(secondNode);
             secondNode.addChildren(firstNode);
         }
-        this.nodes.sort(function(a, b){
-            if(a.name == b.name)
-                return 0;
-            if(a.name < b.name)
-                return -1;
-            return 1;
-        });
     }
 
     depthFirstSearch() {
