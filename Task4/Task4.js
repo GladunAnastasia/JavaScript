@@ -3,55 +3,57 @@ class Node{
         this.name = name;
         this.children = [];
         this.weight = [];
-        this.addChildren = function(children) {
-            if (children instanceof Array) {
-                for(let i = 0; i < children.length; i++) {
-                    if (this.name != children[i]) {
-                        this.children.push(children[i]);
-                    }
+    }
+    addChildren(children) {
+        if (children instanceof Array) {
+            for(let child of children) {
+                if (this.name != child) {
+                    this.children.push(child);
                 }
-            } else {
-                this.children.push(children);
             }
+        } else {
+            this.children.push(children);
         }
     }
 }
 class Graph{
     constructor(array){
         this.nodes = [];
-        this.getNode = function(value) {
-            for(let i = 0; i < this.nodes.length; i++) {
-                if (this.nodes[i].name == value) {
-                    return this.nodes[i];
-                }
-            }
-        }
-        for(let i = 0; i < array.length; i++) {
-            let firstNode = this.getNode(array[i][0]);
+        for(let elem of array) {
+            let firstNode = this.getNode(elem[0]);
             if(!firstNode) {
-                firstNode = new Node(array[i][0]);
+                firstNode = new Node(elem[0]);
                 this.nodes.push(firstNode);
             }
-            let secondNode = this.getNode(array[i][1]);
+            let secondNode = this.getNode(elem[1]);
             if(!secondNode) {
-                secondNode = new Node(array[i][1]);
+                secondNode = new Node(elem[1]);
                 this.nodes.push(secondNode);
             }
-            if(array[i].length == 3) {
-                firstNode.weight.push(array[i][2]);
-                secondNode.weight.push(array[i][2]);
-            } else {firstNode.weight.push(0); secondNode.weight.push(0)};
+            if(elem.length == 3) {
+                firstNode.weight.push(elem[2]);
+                secondNode.weight.push(elem[2]);
+            } else {
+                firstNode.weight.push(0); 
+                secondNode.weight.push(0)
+            };
             firstNode.addChildren(secondNode);
             secondNode.addChildren(firstNode);
         }
-        this.clearParams = function() {
-        	for (let node of this.nodes) {
-	        	node.mark = false;
-	        	node.parent = undefined;
-	        }
-	    }
     }
-
+    getNode(value) {
+        for(let node of this.nodes) {
+            if (node.name == value) {
+                return node;
+            }
+        }
+    }
+    clearParams() {
+        for (let node of this.nodes) {
+            node.mark = false;
+            node.parent = undefined;
+        }
+    }
     depthFirstSearch() {
         let instance = Math.floor(Math.random() * this.nodes.length);
         let node = this.getNode(instance);
@@ -59,9 +61,9 @@ class Graph{
         do{
             node.mark = true;
             let tempNode = node;
-            for(let i = 0; i < node.children.length; i++) {
-                if(!node.children[i].mark) {
-                    node = node.children[i]; 
+            for(let child of node.children) {
+                if(!child.mark) {
+                    node = child; 
                     node.parent = tempNode;
                     node.mark = true;
                     result += ' -> ' + node.name;
@@ -84,13 +86,13 @@ class Graph{
         let arrayTemp;
         do{
             arrayTemp = [];
-            for(let i = 0; i < array.length; i++) {
-                array[i].mark = true;
-                for(let j = 0; j < array[i].children.length; j++) {
-                    if(!array[i].children[j].mark) {
-                        arrayTemp.push(array[i].children[j]);
-                        array[i].children[j].mark = true;
-                        result += ' -> ' + array[i].children[j].name;
+            for(let elem of array) {
+                elem.mark = true;
+                for(let child of elem.children) {
+                    if(!child.mark) {
+                        arrayTemp.push(child);
+                        child.mark = true;
+                        result += ' -> ' + child.name;
                     }
                 }
             }
@@ -123,11 +125,7 @@ class Graph{
                 } 
             }
             firstNode.mark = true;
-            if(minNode) {
-                firstNode = minNode;
-            } else {
-                firstNode = firstNode.parent;
-            }
+            firstNode = minNode ? minNode : firstNode.parent;
         }
         this.clearParams();
         return secondNode.min;
