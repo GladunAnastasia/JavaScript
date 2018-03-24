@@ -19,7 +19,10 @@ class Node{
 class Graph{
     constructor(array){
         this.nodes = [];
-        for(let elem of array) {
+        this.makeGraph(array);
+    }
+    makeGraph(array) {
+    	for(let elem of array) {
             let firstNode = this.getNode(elem[0]);
             if(!firstNode) {
                 firstNode = new Node(elem[0]);
